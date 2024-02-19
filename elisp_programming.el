@@ -144,3 +144,6 @@ buffer-name   ;; Debugger entered--Lisp error: (void-variable buffer-name)
 (set 'цветы  '(роза фиалка маргаритка лютик))
 (set цветы  '(роза фиалка маргаритка лютик))
 
+;; Useful link on learning elisp and emacs
+;; ~/cpp_code/multithreading/01_02_thread_management_using_RAII/
+

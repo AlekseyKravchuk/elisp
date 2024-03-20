@@ -43,6 +43,7 @@
 (string-join '("string" "word2" "dog" "cat") "-")
 
 '(1 2 3 4 5)
+(1 2 3 4 5)  ;; invalid function 1
 
 (string-join '("word1" "word2" "dog" "cat") "-")
 
@@ -54,11 +55,8 @@
 	       "caba"
 	       "daba") ", ")
 
-
-
 ;;Функция cons создает, или конструирует списки;
 (cons 'word '(home car bag))
-
 (cons "word" '("home" "car" "bag"))
 
 'word
@@ -87,6 +85,15 @@
 s  ;; вычисляем символ, считая его переменной, т.к. перед символом нет апострофа
 's ;; вычисляем символ как обычный символ, т.к. перед ним стоит апостроф
 
+
+;; Если вы попытаетесь вычислить символ, с которым не связано никакое значение, то вы получите сообщение об ошибке.
+non_defined_var
+
+(set 'defined_var 255)
+defined_var
+
+(setq defined_var 255) ;; то же самое, что и функция set, но не нужно ставить апостроф перед defined_var
+defined_var
 
 (setq lst '("abc" "efg" "hij"))
 lst

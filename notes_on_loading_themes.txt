@@ -1,0 +1,15 @@
+; Dark theme
+;; (load-theme 'modus-vivendi)
+
+;; Light theme
+;; (load-theme 'modus-operandi t)
+
+;; (load-theme 'solarized-dark t)
+;; (load-theme 'dracula t)
+;; (load-theme 'solarized-dark t)
+;; (load-theme 'solarized-dark t)
+;; (load-theme 'dracula-theme t)
+
+;; (add-hook 'after-init-hook (lambda () (load-theme 'dracula)))
+;; (add-hook 'after-init-hook (lambda () (load-theme 'solarized-light)))
+;; (add-hook 'after-init-hook (lambda () (load-theme 'solarized-dark)))

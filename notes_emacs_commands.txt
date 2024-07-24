@@ -1,0 +1,11 @@
+C-c M-o ;; стереть в emacs shell
+
+TRAMP - [Transparent Remote (file) Access, Multiple Protocol] is used for Remote file editing using a variety of network protocols,
+        including SSH, FTP, Docker, rclone, rsync, and more, as though the files were local.
+
+Eshell vs shell?
+ORG mode ???
+Window vs Frame ???
+
+Font Locking is the correct term for syntax high-lighting in Emacs
+--> Mickey Petersen: Mastering Emacs: p.40, Chapter 3. First steps.

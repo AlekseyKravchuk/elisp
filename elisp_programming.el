@@ -7,6 +7,8 @@
 ;; https://alexott.net/ru/writings/prog-checking/               - Поиск утечек памяти, и прочих ошибок в программах
 ;; https://developers.redhat.com/blog/2021/05/05/memory-error-checking-in-c-and-c-comparing-sanitizers-and-valgrind - Memory error checking in C and C++: Comparing Sanitizers and Valgrind
 
+
+
 ;; Самый простой список в elisp:
 ;; Для того, чтобы вычислить выражение (в данном случае - список), нужно расположить курсор сразу за выражением и запустить команду
 ;; "eval-last-sexp" (C-x C-e)
@@ -14,9 +16,24 @@
 (cat dog fish)  ;; Debugger entered--Lisp error: (void-function cat)
 
 ;; Количество пробелов в списке не имеет значения, поэтому список ниже равен списку, приведенному выше
-'(cat
-  dog
-  fish)
+
+(setq lst1 '(one two three))
+lst1
+
+(setq lst2 '(cat
+             dog
+             fish)
+      )
+
+;; append function returns the new value, it does not modify its arguments. So we need to use setq:
+(setq lst3 (append lst2 '(chicken turtle)))
+lst3
+
+;; push instead modifies its arguments AND adds to the beginning of the list, not the end!
+(push 'strange_animal lst3)
+lst3
+
+(add-to-list)
 
 ;; Список в Лиспе (любой список) - это программа, готовая к запуску.
 ;; Если вы запустите ее (evaluate it), то компьютер сделает следующее:
@@ -38,6 +55,7 @@
 
 ;; Пытаюсь создать список со строками
 '("word1" "string, containing multiple words" "dog" "cat")
+("word1" "string, containing multiple words" "dog" "cat")
 
 (concat "string" "word2" "dog" "cat")
 (string-join '("string" "word2" "dog" "cat") "-")

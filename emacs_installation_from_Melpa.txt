@@ -1,0 +1,4 @@
+;; Installing grom Melpa
+M-x package-list-packages
+
+M-x package-install

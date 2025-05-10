@@ -1,0 +1,83 @@
+;; the t parameter apends to the hook, instead of prepending
+;; this means it'd be run after other hooks that might fiddle with the frame size
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
+
+;; Display line numbers in every buffer
+(global-display-line-numbers-mode)
+
+;; Don't show the splash screen (splash screen - экран-заставка)
+(setq inhibit-startup-message t)
+
+;; add columns numbering
+(setq column-number-mode t)
+
+;; (load-theme 'dracula-theme t)
+;; (add-hook 'after-init-hook (lambda () (load-theme 'dracula)))
+
+;; (load-theme 'darcula t)
+;; (add-hook 'after-init-hook (lambda () (load-theme 'darcula)))
+
+;; prevent emacs to insert tabs, use spaces instead
+(setq-default indent-tabs-mode nil)
+
+;; save the backup files in some other directory, where they won't bother you unless you go looking for them
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+      backup-by-copying t    ; Don't delink hardlinks
+      version-control t      ; Use version numbers on backups
+      delete-old-versions t  ; Automatically delete excess backups
+      kept-new-versions 20   ; how many of the newest versions to keep
+      kept-old-versions 5    ; and how many of the old
+      )
+
+;; manual installation jetbrains-darcula-emacs-theme
+;; (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+;; (load-theme 'jetbrains-darcula t)
+
+;; To use Melpa:
+(require 'package)
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/")
+	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(package-initialize)
+;; ##############################
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;              '("melpa" . "https://melpa.org/packages/") t)
+;; ##############################
+
+;; Once you have added your preferred archive, you need to update the local package list using:
+;; M-x package-refresh-contents RET
+;; and
+;; M-x package-list-packages RET
+
+;; For now, the only way I found to fix it is to disable signature checking and verify all packages by hand.
+;; disable because of elpa bug in emacs 27.1
+(setq package-check-signature nil)
+
+;; Setting up use-package (https://cpp-lang.net/pl/tools/standalone/editors/setup-emacs/#setting-up-use-package)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; Now we will be using use-package to download and install any other package for emacs.
+;; use-package is a very popular package to organize the Emacs configuration and load the installed packages efficiently.
+(require 'use-package)
+
+;; https://github.com/ianyepan/jetbrains-darcula-emacs-theme
+(use-package jetbrains-darcula-theme
+  :config
+  (load-theme 'jetbrains-darcula t))
+
+(load-theme 'jetbrains-darcula t)
+(add-hook 'after-init-hook (lambda () (load-theme 'jetbrains-darcula)))
+
+;; Setting default formatters with use-package
+;; https://github.com/lassik/emacs-format-all-the-code?tab=readme-ov-file
+(use-package format-all
+  :commands format-all-mode
+  :hook (prog-mode . format-all-mode)
+  :config
+  (setq-default format-all-formatters
+                '(("C"     (astyle "--mode=c"))
+                  ("Shell" (shfmt "-i" "4" "-ci")))))
